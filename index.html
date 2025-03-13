@@ -160,19 +160,7 @@
     </div>
 
     <script>
-        function selectCreamLevel(level) {
-            document.getElementById('creamLevelDisplay').textContent = 'Cream Level: ' + level;
-            for (let i = 1; i <= 5; i++) {
-                document.getElementById('circle' + i).classList.remove('active');
-            }
-            document.getElementById('circle' + level).classList.add('active');
-        }
-
-        function updateSyrup() {
-            let syrupSelect = document.getElementById('syrupSelect');
-            let syrup = syrupSelect.value.charAt(0).toUpperCase() + syrupSelect.value.slice(1);
-            document.getElementById('syrupDisplay').textContent = 'Selected Syrup: ' + syrup;
-        }
+       
     </script>
 </body>
 </html>
