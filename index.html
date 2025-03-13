@@ -1,0 +1,111 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cream Level App</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            min-height: 100vh; /* Ensure full viewport height */
+            margin: 0; /* Remove default margins */
+            background-color: grey;
+        }
+
+        .container {
+            background-color: white; /* Or a light grey if you prefer */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+            text-align: center; /* Center text within container */
+        }
+
+        .color-bands {
+            display: flex;
+            width: 300px; /* Adjust as needed */
+            margin-bottom: 20px;
+        }
+
+        .color-band {
+            height: 50px;
+            flex: 1; /* Equal width for each band */
+        }
+
+        .red { background-color: red; }
+        .pink { background-color: pink; }
+        .hot-pink { background-color: hotpink; }
+
+        .cream-controls {
+            display: flex;
+            align-items: center; /* Vertically align items */
+            justify-content: center; /* Center the whole control area */
+            margin-bottom: 20px;
+        }
+
+        .cream-level-button {
+            background-color: #f0f0f0; /* Light grey background */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px; /* Space between button and circles */
+        }
+
+        .circle-container {
+            display: flex; /* Arrange circles horizontally */
+        }
+
+        .circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: lightgrey;
+            margin: 0 5px; /* Space between circles */
+            cursor: pointer; /* Indicate interactivity */
+        }
+
+        /* Example of active/selected circle */
+        .circle.active {
+            background-color: yellow; /* Or a suitable cream color */
+        }
+
+        #creamLevelDisplay { /* For displaying the cream level */
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="color-bands">
+            <div class="color-band red"></div>
+            <div class="color-band pink"></div>
+            <div class="color-band hot-pink"></div>
+        </div>
+
+        <div class="cream-controls">
+            <button class="cream-level-button" id="creamButton">Request Cream Level</button>
+            <div class="circle-container">
+                <div class="circle" data-level="1"></div>
+                <div class="circle" data-level="2"></div>
+                <div class="circle" data-level="3"></div>
+                <div class="circle" data-level="4"></div>
+                <div class="circle" data-level="5"></div>
+            </div>
+        </div>
+        <div id="creamLevelDisplay">Cream Level: 0</div>  </div>
+
+    <script>
+        const creamButton = document.getElementById('creamButton');
+        const circles = document.querySelectorAll('.circle');
+        const creamLevelDisplay = document.getElementById('creamLevelDisplay');
+        let selectedLevel = 0; // Initialize cream level
+
+
+
+    </script>
+
+</body>
+</html>
