@@ -128,10 +128,96 @@
     </div>
     
 </body>
+    <div class="container"> 
+
+        <div class="color-bands"> 
+
+            <div class="color-band red"></div> 
+
+            <div class="color-band pink"></div> 
+
+            <div class="color-band hot-pink"></div> 
+
+        </div> 
+
+  
+
+        <div class="cream-controls"> 
+
+            <button class="cream-level-button" id="creamButton">Request Cream Level</button> 
+
+            <div class="circle-container"> 
+
+                <div class="circle" id="circle1" data-level="1" onclick="selectCreamLevel(1)"></div> 
+
+                <div class="circle" id="circle2" data-level="2" onclick="selectCreamLevel(2)"></div> 
+
+                <div class="circle" id="circle3" data-level="3" onclick="selectCreamLevel(3)"></div> 
+
+                <div class="circle" id="circle4" data-level="4" onclick="selectCreamLevel(4)"></div> 
+
+                <div class="circle" id="circle5" data-level="5" onclick="selectCreamLevel(5)"></div> 
+
+            </div> 
+
+        </div> 
+
+        <div id="creamLevelDisplay">Cream Level: 0</div> 
+
+  
+
+        <div class="syrup-options"> 
+
+            <label for="syrupSelect">Choose Syrup:</label> 
+
+            <select id="syrupSelect" onchange="updateSyrup()"> 
+
+                <option value="none">None</option> 
+
+                <option value="vanilla">Vanilla</option> 
+
+            <option value="caramel">Caramel</option> 
+
+           <option value="hazelnut">Hazelnut</option> 
+
+            </select> 
+        </div> 
+        <div id="syrupDisplay">Selected Syrup: None</div> 
+
+    </div> 
+
 <body>
    
     <script>
-       
+function selectCreamLevel(level) { 
+
+            document.getElementById('creamLevelDisplay').textContent = 'Cream Level: ' + level; 
+
+            for (let i = 1; i <= 5; i++) { 
+
+                document.getElementById('circle' + i).classList.remove('active'); 
+
+            } 
+
+            document.getElementById('circle' + level).classList.add('active'); 
+
+        } 
+
+  
+
+        function updateSyrup() { 
+
+            let syrupSelect = document.getElementById('syrupSelect'); 
+
+            let syrup = syrupSelect.value.charAt(0).toUpperCase() + syrupSelect.value.slice(1); 
+
+            document.getElementById('syrupDisplay').textContent = 'Selected Syrup: ' + syrup; 
+
+        } 
+
+
+
+        
     </script>
 </body>
 </html>
