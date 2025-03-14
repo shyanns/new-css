@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cream Level App</title>
     <style>
-       
+        /* Basic styling for the page layout */
         body {
             font-family: sans-serif;
             display: flex;
@@ -54,21 +54,23 @@
         .pink { background-color: pink; }
         .hot-pink { background-color: hotpink; }
 
-        .syrup-box {
+        /* New syrup selection section */
+        .syrup-selection {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 5px;
-            justify-content: center;
+            margin-left: 20px;
+            align-items: flex-start;
         }
 
         .syrup-option {
-            width: 50px;
-            height: 50px;
+            width: 100px;
+            height: 30px;
             border-radius: 5px;
             text-align: center;
-            line-height: 50px;
+            line-height: 30px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 14px;
             background-color: white;
             border: 1px solid black;
         }
@@ -133,12 +135,6 @@
                 <div class="color-band pink"></div>
                 <div class="color-band hot-pink"></div>
             </div>
-            <!-- Syrup selection box -->
-            <div class="syrup-box">
-                <div class="syrup-option" onclick="selectSyrup(this)">Vanilla</div>
-                <div class="syrup-option" onclick="selectSyrup(this)">Caramel</div>
-                <div class="syrup-option" onclick="selectSyrup(this)">Hazelnut</div>
-            </div>
             <!-- Milk type selection -->
             <div class="milk-options">
                 <div class="milk-option" onclick="selectMilk(this, 'Almond', '#f5e6ca')">
@@ -154,6 +150,19 @@
         </div>
 
         <div>
+            <!-- Syrup selection box moved out of the main container -->
+            <div class="syrup-selection">
+                <div class="syrup-option" onclick="selectSyrup(this)">Vanilla</div>
+                <div class="syrup-option" onclick="selectSyrup(this)">Caramel</div>
+                <div class="syrup-option" onclick="selectSyrup(this)">Hazelnut</div>
+                <div class="syrup-option" onclick="selectSyrup(this)">Chocolate</div>
+                <div class="syrup-option" onclick="selectSyrup(this)">Toffee</div>
+                <div class="syrup-option" onclick="selectSyrup(this)">Maple</div>
+                <div class="syrup-option" onclick="selectSyrup(this)">Pumpkin Spice</div>
+                <div class="syrup-option" onclick="selectSyrup(this)">Cinnamon</div>
+                <div class="syrup-option" onclick="selectSyrup(this)">Almond</div>
+            </div>
+
             <!-- Cream level selection -->
             <div class="cream-controls">
                 <button class="cream-level-button">Request Cream Level</button>
@@ -191,7 +200,7 @@
             // This loops through each syrup and removes the 'selected' class (so nothing is highlighted)
             syrups.forEach(syrup => syrup.classList.remove('selected'));
             
-            // i added the 'selected' class to the syrup that was clicked
+            // Here, we add the 'selected' class to the syrup that was clicked
             // This makes it highlight with a yellow background
             element.classList.add('selected');
             
