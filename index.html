@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cream Level App</title>
     <style>
+        /* Basic styling for the page layout */
         body {
             font-family: sans-serif;
             display: flex;
-            //sets how a flex item will grow or shrink to fit the space available in its flex container.
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -16,8 +16,11 @@
             margin: 0;
             background-color: grey;
         }
-        //containers act like a wrapper over to enclose certain features, like everything in the containers for the creamer box
+
         .container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
             background-color: white;
             padding: 20px;
             border-radius: 10px;
@@ -25,202 +28,202 @@
             text-align: center;
         }
 
+        .sidebar {
+            background-color: lightgrey;
+            padding: 10px;
+            border-radius: 10px;
+            margin-right: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         .color-bands {
             display: flex;
-            width: 300px;
+            flex-direction: column;
+            gap: 5px;
             margin-bottom: 20px;
         }
 
         .color-band {
-            height: 50px;
-            flex: 1;
+            width: 50px;
+            height: 20px;
         }
 
         .red { background-color: red; }
         .pink { background-color: pink; }
         .hot-pink { background-color: hotpink; }
 
-        .cream-controls {
+        .syrup-box {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
             justify-content: center;
-            margin-bottom: 20px;
         }
 
-        .cream-level-button {
-            background-color: #f0f0f0;
-            border: none;
-            padding: 10px 20px;
+        .syrup-option {
+            width: 50px;
+            height: 50px;
             border-radius: 5px;
+            text-align: center;
+            line-height: 50px;
             cursor: pointer;
-            margin-right: 10px;
+            font-size: 12px;
+            background-color: white;
+            border: 1px solid black;
         }
 
-        .circle-container {
-            display: flex;
-        }
-
-        .circle {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: lightgrey;
-            margin: 0 5px;
-            cursor: pointer;
-        }
-
-        .circle.active {
+        .syrup-option.selected {
             background-color: yellow;
         }
 
-        #creamLevelDisplay {
-            margin-top: 10px;
+        .milk-options {
+            margin-top: 20px;
         }
 
-        .syrup-options {
+        .milk-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        .milk-box {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+        .milk-option img {
+            width: 20px;
+            height: 20px;
+            margin-left: 5px;
+        }
+
+        .title {
+            font-size: 50px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
             margin-top: 20px;
+        }
+
+        .order-button, .finish-button {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 5px;
         }
     </style>
 </head>
-<body style="font-family: Arial, sans-serif; background-color: #BF1E1E; display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center; min-height: 100vh; padding: 20px; margin: 0;">
+<body>
+    <div class="title">DRINK</div>
+    <div class="container">
+        <div class="sidebar">
+            <!-- Color bands for selection -->
+            <div class="color-bands">
+                <div class="color-band red"></div>
+                <div class="color-band pink"></div>
+                <div class="color-band hot-pink"></div>
+            </div>
+            <!-- Syrup selection box -->
+            <div class="syrup-box">
+                <div class="syrup-option" onclick="selectSyrup(this)">Vanilla</div>
+                <div class="syrup-option" onclick="selectSyrup(this)">Caramel</div>
+                <div class="syrup-option" onclick="selectSyrup(this)">Hazelnut</div>
+            </div>
+            <!-- Milk type selection -->
+            <div class="milk-options">
+                <div class="milk-option" onclick="selectMilk(this, 'Almond', '#f5e6ca')">
+                    <div class="milk-box"></div> Almond <img src="almond.png" alt="Almond Milk">
+                </div>
+                <div class="milk-option" onclick="selectMilk(this, 'Oat', '#f2e1c2')">
+                    <div class="milk-box"></div> Oat <img src="oat.png" alt="Oat Milk">
+                </div>
+                <div class="milk-option" onclick="selectMilk(this, 'Regular', '#fff')">
+                    <div class="milk-box"></div> Regular <img src="regular.png" alt="Regular Milk">
+                </div>
+            </div>
+        </div>
 
-    <div class="syrup-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; max-width: 1200px; width: 100%;">
-        <div class="syrup-box" style="background-color: #ff4d4d; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            <h3 style="font-size: 1.4rem; color: white; margin-bottom: 10px;">Caramel Sea Salt</h3>
-            <p style="font-size: 1rem; color: #fff;">A sweet yet slightly salty twist on the classic caramel flavor.</p>
-        </div>
-        <div class="syrup-box" style="background-color: #ff4d4d; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            <h3 style="font-size: 1.4rem; color: white; margin-bottom: 10px;">Vanilla Bourbon</h3>
-            <p style="font-size: 1rem; color: #fff;">A rich vanilla with a subtle, smoky undertone of bourbon.</p>
-        </div>
-        <div class="syrup-box" style="background-color: #ff4d4d; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            <h3 style="font-size: 1.4rem; color: white; margin-bottom: 10px;">Lavender Honey</h3>
-            <p style="font-size: 1rem; color: #fff;">A calming blend with floral notes, perfect for a soothing drink.</p>
-        </div>
-        <div class="syrup-box" style="background-color: #ff4d4d; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            <h3 style="font-size: 1.4rem; color: white; margin-bottom: 10px;">Maple Pecan</h3>
-            <p style="font-size: 1rem; color: #fff;">Sweet maple with a warm, nutty finish.</p>
-        </div>
-        <div class="syrup-box" style="background-color: #ff4d4d; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            <h3 style="font-size: 1.4rem; color: white; margin-bottom: 10px;">Chocolate Hazelnut</h3>
-            <p style="font-size: 1rem; color: #fff;">A rich, nutty syrup that adds depth to any coffee drink.</p>
-        </div>
-        <div class="syrup-box" style="background-color: #ff4d4d; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            <h3 style="font-size: 1.4rem; color: white; margin-bottom: 10px;">Toffee Nut</h3>
-            <p style="font-size: 1rem; color: #fff;">A smooth, sweet toffee flavor with a nutty accent.</p>
-        </div>
-        <div class="syrup-box" style="background-color: #ff4d4d; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            <h3 style="font-size: 1.4rem; color: white; margin-bottom: 10px;">Cinnamon Toast Crunch</h3>
-            <p style="font-size: 1rem; color: #fff;">Inspired by the cereal, with cinnamon and sugar flavors.</p>
-        </div>
-        <div class="syrup-box" style="background-color: #ff4d4d; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            <h3 style="font-size: 1.4rem; color: white; margin-bottom: 10px;">Gingerbread Spice</h3>
-            <p style="font-size: 1rem; color: #fff;">A cozy, spiced flavor perfect for seasonal drinks.</p>
-        </div>
-        <div class="syrup-box" style="background-color: #ff4d4d; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            <h3 style="font-size: 1.4rem; color: white; margin-bottom: 10px;">Blood Orange</h3>
-            <p style="font-size: 1rem; color: #fff;">A citrusy, tart syrup with a refreshing kick.</p>
-        </div>
-        <div class="syrup-box" style="background-color: #ff4d4d; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); padding: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            <h3 style="font-size: 1.4rem; color: white; margin-bottom: 10px;">Coconut Almond</h3>
-            <p style="font-size: 1rem; color: #fff;">A tropical flavor that combines coconut with a nutty almond essence.</p>
+        <div>
+            <!-- Cream level selection -->
+            <div class="cream-controls">
+                <button class="cream-level-button">Request Cream Level</button>
+                <div class="circle-container">
+                    <div class="circle" onclick="selectCreamLevel(1)"></div>
+                    <div class="circle" onclick="selectCreamLevel(2)"></div>
+                    <div class="circle" onclick="selectCreamLevel(3)"></div>
+                    <div class="circle" onclick="selectCreamLevel(4)"></div>
+                    <div class="circle" onclick="selectCreamLevel(5)"></div>
+                </div>
+            </div>
+            <div id="creamLevelDisplay">Cream Level: 0</div>
+            <div id="syrupDisplay">Selected Syrup: None</div>
+            <div id="milkDisplay">Selected Milk: None</div>
+            <!-- Order and Finish buttons -->
+            <div class="button-container">
+                <button class="order-button" onclick="placeOrder()">Order</button>
+                <button class="finish-button" onclick="pauseApp()">Finish</button>
+            </div>
         </div>
     </div>
-    <div class="container"> 
 
-        <div class="color-bands"> 
-
-            <div class="color-band red"></div> 
-
-            <div class="color-band pink"></div> 
-
-            <div class="color-band hot-pink"></div> 
-
-        </div> 
-
-  
-
-        <div class="cream-controls"> 
-
-            <button class="cream-level-button" id="creamButton">Request Cream Level</button> 
-
-            <div class="circle-container"> 
-
-                <div class="circle" id="circle1" data-level="1" onclick="selectCreamLevel(1)"></div> 
-
-                <div class="circle" id="circle2" data-level="2" onclick="selectCreamLevel(2)"></div> 
-
-                <div class="circle" id="circle3" data-level="3" onclick="selectCreamLevel(3)"></div> 
-
-                <div class="circle" id="circle4" data-level="4" onclick="selectCreamLevel(4)"></div> 
-
-                <div class="circle" id="circle5" data-level="5" onclick="selectCreamLevel(5)"></div> 
-
-            </div> 
-
-        </div> 
-
-        <div id="creamLevelDisplay">Cream Level: 0</div> 
-
-  
-
-        <div class="syrup-options"> 
-
-            <label for="syrupSelect">Choose Syrup:</label> 
-
-            <select id="syrupSelect" onchange="updateSyrup()"> 
-
-                <option value="none">None</option> 
-
-                <option value="vanilla">Vanilla</option> 
-
-            <option value="caramel">Caramel</option> 
-
-           <option value="hazelnut">Hazelnut</option> 
-                <option value="toffeenut">Toffeenut</option> 
-                
-
-            </select> 
-        </div> 
-        <div id="syrupDisplay">Selected Syrup: None</div> 
-
-    </div> 
-
-    
-</body>
-    
-<body>
-   
     <script>
-function selectCreamLevel(level) { 
+        // Function to select cream level
+        function selectCreamLevel(level) {
+            // Change the cream level text when a cream level is clicked
+            document.getElementById('creamLevelDisplay').textContent = 'Cream Level: ' + level;
+        }
 
-            document.getElementById('creamLevelDisplay').textContent = 'Cream Level: ' + level; 
+        // Function to select a syrup
+        function selectSyrup(element) {
+            // 'querySelectorAll' grabs all the syrup options (the ones with 'syrup-option' class)
+            let syrups = document.querySelectorAll('.syrup-option');
+            
+            // This loops through each syrup and removes the 'selected' class (so nothing is highlighted)
+            syrups.forEach(syrup => syrup.classList.remove('selected'));
+            
+            // Here, we add the 'selected' class to the syrup that was clicked
+            // This makes it highlight with a yellow background
+            element.classList.add('selected');
+            
+            // Updates the display to show which syrup was selected
+            document.getElementById('syrupDisplay').textContent = 'Selected Syrup: ' + element.textContent;
+        }
 
-            for (let i = 1; i <= 5; i++) { 
+        // Function to select a milk type and change background color
+        function selectMilk(element, type, color) {
+            // Changes the background color based on which milk is selected
+            document.body.style.backgroundColor = color;
+            
+            // Updates the display to show which milk was selected
+            document.getElementById('milkDisplay').textContent = 'Selected Milk: ' + type;
+        }
 
-                document.getElementById('circle' + i).classList.remove('active'); 
+        // Function to place an order
+        function placeOrder() {
+            alert('Order placed!'); // Shows a pop-up saying "Order placed!"
+        }
 
-            } 
-
-            document.getElementById('circle' + level).classList.add('active'); 
-
-        } 
-
-  
-
-        function updateSyrup() { 
-
-            let syrupSelect = document.getElementById('syrupSelect'); 
-
-            let syrup = syrupSelect.value.charAt(0).toUpperCase() + syrupSelect.value.slice(1); 
-
-            document.getElementById('syrupDisplay').textContent = 'Selected Syrup: ' + syrup; 
-
-        } 
-
-
-
-        
+        // Function to pause the app (disable all buttons and selections)
+        function pauseApp() {
+            // This selects all buttons, syrup circles, and milk options
+            document.querySelectorAll('button, .circle, .syrup-option, .milk-option').forEach(el => {
+                // Disables any interaction with the elements (no clicks)
+                el.style.pointerEvents = 'none';
+                
+                // Lowers the opacity to make the elements look faded (inactive)
+                el.style.opacity = '0.5';
+            });
+        }
     </script>
 </body>
 </html>
