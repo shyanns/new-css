@@ -213,17 +213,17 @@
     </div>
 
     <script>
-        // Function to select cream level
+        
         function selectCreamLevel(level) {
-            document.getElementById('creamLevelDisplay').textContent = 'Cream Level: ' + level;
+            document.getElementById('creamLevelDisplay').textContent = 'cream Level: ' + level;
         }
 
-        // Function to select a syrup
+       
         function selectSyrup(element) {
             let syrups = document.querySelectorAll('.syrup-option');
             syrups.forEach(syrup => syrup.classList.remove('selected'));
             element.classList.add('selected');
-            document.getElementById('syrupDisplay').textContent = 'Selected Syrup: ' + element.textContent;
+            document.getElementById('syrupDisplay').textContent = 'selected Syrup: ' + element.textContent;
         }
 
         // Function to select a milk type and change background color accordingly
@@ -232,12 +232,12 @@
             document.getElementById('milkDisplay').textContent = 'Selected Milk: ' + type;
         }
 
-        // Function to place an order
+       
         function placeOrder() {
             alert('Order placed!');
         }
 
-        // Function to disable all interactions after finishing
+        //pauses when theyre done ordering
         function pauseApp() {
             document.querySelectorAll('button, .circle, .syrup-option, .milk-option').forEach(el => {
                 el.style.pointerEvents = 'none';
