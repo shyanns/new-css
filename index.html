@@ -78,7 +78,7 @@
             background-color: yellow;
         }
 
-        /* Milk options */
+      
         .milk-options {
             margin-top: 20px;
         }
@@ -160,7 +160,7 @@
                 <div class="color-band hot-pink"></div>
             </div>
 
-            <!-- Milk type selection -->
+         
             <div class="milk-options">
                 <div class="milk-option" onclick="selectMilk(this, 'Almond', '#f5e6ca')">
                     <div class="milk-box"></div> Almond
@@ -204,7 +204,7 @@
             <div id="syrupDisplay">Selected Syrup: None</div>
             <div id="milkDisplay">Selected Milk: None</div>
 
-            <!-- Order and Finish buttons -->
+           
             <div class="button-container">
                 <button class="order-button" onclick="placeOrder()">Order</button>
                 <button class="finish-button" onclick="pauseApp()">Finish</button>
@@ -219,6 +219,7 @@
         }
 
        
+           
         function selectSyrup(element) {
             let syrups = document.querySelectorAll('.syrup-option');
             syrups.forEach(syrup => syrup.classList.remove('selected'));
