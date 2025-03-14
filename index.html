@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cream Level App</title>
     <style>
-        /* Basic styling for the page layout */
         body {
             font-family: sans-serif;
             display: flex;
@@ -54,12 +53,12 @@
         .pink { background-color: pink; }
         .hot-pink { background-color: hotpink; }
 
-        /* New syrup selection section */
-        .syrup-selection {
+        /* Syrup box style */
+        .syrup-box {
             display: flex;
             flex-direction: column;
             gap: 5px;
-            margin-left: 20px;
+            margin-bottom: 20px;
             align-items: flex-start;
         }
 
@@ -79,6 +78,7 @@
             background-color: yellow;
         }
 
+        /* Milk options */
         .milk-options {
             margin-top: 20px;
         }
@@ -123,6 +123,30 @@
             margin: 5px;
             border-radius: 5px;
         }
+
+        /* Cream level box styles */
+        .cream-box {
+            margin-left: 20px;
+        }
+
+        .circle-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ddd;
+            cursor: pointer;
+        }
+
+        .circle:hover {
+            background-color: #bbb;
+        }
     </style>
 </head>
 <body>
@@ -135,6 +159,7 @@
                 <div class="color-band pink"></div>
                 <div class="color-band hot-pink"></div>
             </div>
+
             <!-- Milk type selection -->
             <div class="milk-options">
                 <div class="milk-option" onclick="selectMilk(this, 'Almond', '#f5e6ca')">
@@ -147,11 +172,9 @@
                     <div class="milk-box"></div> Regular <img src="regular.png" alt="Regular Milk">
                 </div>
             </div>
-        </div>
 
-        <div>
-            <!-- Syrup selection box moved out of the main container -->
-            <div class="syrup-selection">
+            <!-- Syrup selection box -->
+            <div class="syrup-box">
                 <div class="syrup-option" onclick="selectSyrup(this)">Vanilla</div>
                 <div class="syrup-option" onclick="selectSyrup(this)">Caramel</div>
                 <div class="syrup-option" onclick="selectSyrup(this)">Hazelnut</div>
@@ -162,9 +185,11 @@
                 <div class="syrup-option" onclick="selectSyrup(this)">Cinnamon</div>
                 <div class="syrup-option" onclick="selectSyrup(this)">Almond</div>
             </div>
+        </div>
 
-            <!-- Cream level selection -->
-            <div class="cream-controls">
+        <div>
+            <!-- Cream level selection box -->
+            <div class="cream-box">
                 <button class="cream-level-button">Request Cream Level</button>
                 <div class="circle-container">
                     <div class="circle" onclick="selectCreamLevel(1)"></div>
@@ -174,9 +199,11 @@
                     <div class="circle" onclick="selectCreamLevel(5)"></div>
                 </div>
             </div>
+
             <div id="creamLevelDisplay">Cream Level: 0</div>
             <div id="syrupDisplay">Selected Syrup: None</div>
             <div id="milkDisplay">Selected Milk: None</div>
+
             <!-- Order and Finish buttons -->
             <div class="button-container">
                 <button class="order-button" onclick="placeOrder()">Order</button>
@@ -188,51 +215,37 @@
     <script>
         // Function to select cream level
         function selectCreamLevel(level) {
-            // Change the cream level text when a cream level is clicked
             document.getElementById('creamLevelDisplay').textContent = 'Cream Level: ' + level;
         }
 
         // Function to select a syrup
         function selectSyrup(element) {
-            // 'querySelectorAll' grabs all the syrup options (the ones with 'syrup-option' class)
             let syrups = document.querySelectorAll('.syrup-option');
-            
-            // This loops through each syrup and removes the 'selected' class (so nothing is highlighted)
             syrups.forEach(syrup => syrup.classList.remove('selected'));
-            
-            // Here, we add the 'selected' class to the syrup that was clicked
-            // This makes it highlight with a yellow background
             element.classList.add('selected');
-            
-            // Updates the display to show which syrup was selected
             document.getElementById('syrupDisplay').textContent = 'Selected Syrup: ' + element.textContent;
         }
 
-        // Function to select a milk type and change background color
+        // Function to select a milk type and change background color accordingly
         function selectMilk(element, type, color) {
-            // Changes the background color based on which milk is selected
             document.body.style.backgroundColor = color;
-            
-            // Updates the display to show which milk was selected
             document.getElementById('milkDisplay').textContent = 'Selected Milk: ' + type;
         }
 
         // Function to place an order
         function placeOrder() {
-            alert('Order placed!'); // Shows a pop-up saying "Order placed!"
+            alert('Order placed!');
         }
 
-        // Function to pause the app (disable all buttons and selections)
+        // Function to disable all interactions after finishing
         function pauseApp() {
-            // This selects all buttons, syrup circles, and milk options
             document.querySelectorAll('button, .circle, .syrup-option, .milk-option').forEach(el => {
-                // Disables any interaction with the elements (no clicks)
                 el.style.pointerEvents = 'none';
-                
-                // Lowers the opacity to make the elements look faded (inactive)
                 el.style.opacity = '0.5';
             });
         }
     </script>
 </body>
 </html>
+
+
