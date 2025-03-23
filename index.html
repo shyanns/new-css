@@ -53,7 +53,6 @@
         .pink { background-color: pink; }
         .hot-pink { background-color: hotpink; }
 
-        /* Syrup box style */
         .syrup-box {
             display: flex;
             flex-direction: column;
@@ -78,7 +77,6 @@
             background-color: yellow;
         }
 
-      
         .milk-options {
             margin-top: 20px;
         }
@@ -96,12 +94,6 @@
             margin-right: 5px;
             border: 1px solid black;
             cursor: pointer;
-        }
-
-        .milk-option img {
-            width: 20px;
-            height: 20px;
-            margin-left: 5px;
         }
 
         .title {
@@ -124,7 +116,6 @@
             border-radius: 5px;
         }
 
-        /* Cream level box styles */
         .cream-box {
             margin-left: 20px;
         }
@@ -147,16 +138,6 @@
         .circle:hover {
             background-color: #bbb;
         }
-        body {
-            font-family: sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: pink;
-        }
 
         .main-container {
             display: flex;
@@ -164,19 +145,6 @@
             justify-content: center;
             gap: 20px;
             width: 90%;
-        }
-
-        .container, .order-container {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            margin-top: 20px;
-            flex: 1;
         }
 
         .preset-orders {
@@ -209,116 +177,11 @@
             border-radius: 5px;
         }
 
-        .sidebar {
-            background-color: lightgrey;
-            padding: 10px;
-            border-radius: 10px;
-            margin-right: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .color-bands {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            margin-bottom: 20px;
-        }
-
-        .color-band {
-            width: 50px;
-            height: 20px;
-        }
-
-        .red { background-color: red; }
-        .pink { background-color: pink; }
-        .hot-pink { background-color: hotpink; }
-
-        .syrup-box {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            margin-bottom: 20px;
-            align-items: flex-start;
-        }
-
-        .syrup-option {
-            width: 100px;
-            height: 30px;
-            border-radius: 5px;
-            text-align: center;
-            line-height: 30px;
-            cursor: pointer;
-            font-size: 14px;
-            background-color: white;
-            border: 1px solid black;
-        }
-
-        .syrup-option.selected {
-            background-color: yellow;
-        }
-
-        .milk-options {
-            margin-top: 20px;
-        }
-
-        .milk-option {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            margin-bottom: 5px;
-        }
-
-        .milk-box {
-            width: 20px;
-            height: 20px;
-            margin-right: 5px;
-            border: 1px solid black;
-            cursor: pointer;
-        }
-
-        .title {
-            font-size: 50px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .button-container {
-            margin-top: 20px;
-        }
-
-        .order-button, .finish-button {
-            background-color: black;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            margin: 5px;
-            border-radius: 5px;
-        }
-
-        .cream-box {
-            margin-left: 20px;
-        }
-
-        .circle-container {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
+        .order-details {
+            background-color: lightgreen;
+            padding: 15px;
             margin-top: 10px;
-        }
-
-        .circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #ddd;
-            cursor: pointer;
-        }
-
-        .circle:hover {
-            background-color: #bbb;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -336,125 +199,111 @@
                 <div id="ingredientBox" class="display-box">Select an order to see ingredients</div>
             </div>
         </div>
-    </div>
-    <div class="title">DRINK</div>
-    <div class="container">
-        <div class="sidebar">
-            <!-- Color bands for selection -->
-            <div class="color-bands">
-                <div class="color-band red"></div>
-                <div class="color-band pink"></div>
-                <div class="color-band hot-pink"></div>
-            </div>
 
-         
-            <div class="milk-options">
-                <div class="milk-option" onclick="selectMilk(this, 'Almond', '#f5e6ca')">
-                    <div class="milk-box"></div> Almond
+        <div class="container">
+            <div class="sidebar">
+                <!-- Color bands for selection -->
+                <div class="color-bands">
+                    <div class="color-band red"></div>
+                    <div class="color-band pink"></div>
+                    <div class="color-band hot-pink"></div>
                 </div>
-                <div class="milk-option" onclick="selectMilk(this, 'Oat', '#f2e1c2')">
-                    <div class="milk-box"></div> Oat 
-                </div>
-                <div class="milk-option" onclick="selectMilk(this, 'Regular', '#fff')">
-                    <div class="milk-box"></div> Regular
-                </div>
-            </div>
 
-            <!-- Syrup selection box -->
-            <div class="syrup-box">
-                <div class="syrup-option" onclick="selectSyrup(this)">Vanilla</div>
-                <div class="syrup-option" onclick="selectSyrup(this)">Caramel</div>
-                <div class="syrup-option" onclick="selectSyrup(this)">Hazelnut</div>
-                <div class="syrup-option" onclick="selectSyrup(this)">Chocolate</div>
-                <div class="syrup-option" onclick="selectSyrup(this)">Toffee</div>
-                <div class="syrup-option" onclick="selectSyrup(this)">Maple</div>
-                <div class="syrup-option" onclick="selectSyrup(this)">Pumpkin Spice</div>
-                <div class="syrup-option" onclick="selectSyrup(this)">Cinnamon</div>
-                <div class="syrup-option" onclick="selectSyrup(this)">Almond</div>
-            </div>
-        </div>
+                <div class="milk-options">
+                    <div class="milk-option" onclick="selectMilk(this, 'Almond', '#f5e6ca')">
+                        <div class="milk-box"></div> Almond
+                    </div>
+                    <div class="milk-option" onclick="selectMilk(this, 'Oat', '#f2e1c2')">
+                        <div class="milk-box"></div> Oat 
+                    </div>
+                    <div class="milk-option" onclick="selectMilk(this, 'Regular', '#fff')">
+                        <div class="milk-box"></div> Regular
+                    </div>
+                </div>
 
-        <div>
-            <!-- Cream level selection box -->
-            <div class="cream-box">
-                <button class="cream-level-button">Request Cream Level</button>
-                <div class="circle-container">
-                    <div class="circle" onclick="selectCreamLevel(1)"></div>
-                    <div class="circle" onclick="selectCreamLevel(2)"></div>
-                    <div class="circle" onclick="selectCreamLevel(3)"></div>
-                    <div class="circle" onclick="selectCreamLevel(4)"></div>
-                    <div class="circle" onclick="selectCreamLevel(5)"></div>
+                <div class="syrup-box">
+                    <div class="syrup-option" onclick="selectSyrup(this)">Vanilla</div>
+                    <div class="syrup-option" onclick="selectSyrup(this)">Caramel</div>
+                    <div class="syrup-option" onclick="selectSyrup(this)">Hazelnut</div>
+                    <div class="syrup-option" onclick="selectSyrup(this)">Chocolate</div>
+                    <div class="syrup-option" onclick="selectSyrup(this)">Toffee</div>
+                    <div class="syrup-option" onclick="selectSyrup(this)">Maple</div>
+                    <div class="syrup-option" onclick="selectSyrup(this)">Pumpkin Spice</div>
+                    <div class="syrup-option" onclick="selectSyrup(this)">Cinnamon</div>
+                    <div class="syrup-option" onclick="selectSyrup(this)">Almond</div>
                 </div>
             </div>
 
-            <div id="creamLevelDisplay">Cream Level: 0</div>
-            <div id="syrupDisplay">Selected Syrup: None</div>
-            <div id="milkDisplay">Selected Milk: None</div>
+            <div>
+                <div class="cream-box">
+                    <button class="cream-level-button">Request Cream Level</button>
+                    <div class="circle-container">
+                        <div class="circle" onclick="selectCreamLevel(1)"></div>
+                        <div class="circle" onclick="selectCreamLevel(2)"></div>
+                        <div class="circle" onclick="selectCreamLevel(3)"></div>
+                        <div class="circle" onclick="selectCreamLevel(4)"></div>
+                        <div class="circle" onclick="selectCreamLevel(5)"></div>
+                    </div>
+                </div>
 
-           
-            <div class="button-container">
-                <button class="order-button" onclick="placeOrder()">Order</button>
-                <button class="finish-button" onclick="pauseApp()">Finish</button>
+                <div id="creamLevelDisplay">Cream Level: 0</div>
+                <div id="syrupDisplay">Selected Syrup: None</div>
+                <div id="milkDisplay">Selected Milk: None</div>
+
+                <div class="button-container">
+                    <button class="order-button" onclick="placeOrder()">Order</button>
+                    <button class="finish-button" onclick="finishOrder()">Finish</button>
+                </div>
             </div>
         </div>
     </div>
-    <div id="finalOrder" class="order-container" style="display: none;">
-        <h3>Final Order</h3>
-        <div class="final-order"></div>
-    </div>
+
+    <div id="finalOrder" class="order-details"></div>
 
     <script>
-        const presetOrders = {
-            "Matcha": ["Matcha Powder", "Almond Milk", "Honey"],
-            "Vanilla Dream": ["Vanilla Syrup", "Oat Milk", "Espresso"],
-            "Fruity Bliss": ["Strawberry", "Mango", "Coconut Milk"],
-            "Coco with Nut": ["Coconut Cream", "Hazelnut Syrup", "Chocolate Drizzle"],
-            "Dragon Fire": ["Spicy Chai", "Cinnamon", "Oat Milk"]
-        };
-
-        let selectedOrder = "";
-
-    <script>
-        
         function selectCreamLevel(level) {
-            document.getElementById('creamLevelDisplay').textContent = 'cream Level: ' + level;
+            document.getElementById('creamLevelDisplay').textContent = 'Cream Level: ' + level;
         }
 
-       
-           
         function selectSyrup(element) {
             let syrups = document.querySelectorAll('.syrup-option');
             syrups.forEach(syrup => syrup.classList.remove('selected'));
             element.classList.add('selected');
-            document.getElementById('syrupDisplay').textContent = 'selected Syrup: ' + element.textContent;
+            document.getElementById('syrupDisplay').textContent = 'Selected Syrup: ' + element.textContent;
         }
 
-        // Function to select a milk type and change background color accordingly
         function selectMilk(element, type, color) {
             document.body.style.backgroundColor = color;
             document.getElementById('milkDisplay').textContent = 'Selected Milk: ' + type;
         }
-        function selectSyrup(element) {
-            document.querySelectorAll('.syrup-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            element.classList.add('selected');
+
+        function showIngredients(order) {
+            let ingredients = {
+                "Matcha": "Matcha powder, Milk, Sugar",
+                "Vanilla Dream": "Vanilla syrup, Milk, Sugar",
+                "Fruity Bliss": "Mixed berries, Milk, Sugar",
+                "Coco with Nut": "Coconut milk, Almonds, Syrup",
+                "Dragon Fire": "Spicy syrup, Milk, Cinnamon"
+            };
+            document.getElementById('ingredientBox').textContent = ingredients[order] || 'Ingredients not available';
         }
 
-       
+        function finishOrder() {
+            let creamLevel = document.getElementById('creamLevelDisplay').textContent;
+            let syrup = document.getElementById('syrupDisplay').textContent;
+            let milk = document.getElementById('milkDisplay').textContent;
+            let orderSummary = `
+                <h3>Your Order:</h3>
+                <p>${creamLevel}</p>
+                <p>${syrup}</p>
+                <p>${milk}</p>
+            `;
+            document.getElementById('finalOrder').innerHTML = orderSummary;
+        }
+
         function placeOrder() {
             alert('Order placed!');
-        }
-
-        //pauses when theyre done ordering
-        function pauseApp() {
-            document.querySelectorAll('button, .circle, .syrup-option, .milk-option').forEach(el => {
-                el.style.pointerEvents = 'none';
-                el.style.opacity = '0.5';
-            });
         }
     </script>
 </body>
 </html>
-
-
