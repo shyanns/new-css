@@ -147,9 +147,196 @@
         .circle:hover {
             background-color: #bbb;
         }
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: pink;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 20px;
+            width: 90%;
+        }
+
+        .container, .order-container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+            flex: 1;
+        }
+
+        .preset-orders {
+            display: flex;
+            flex-direction: column;
+            background-color: lightblue;
+            padding: 15px;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .order-item {
+            background-color: white;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid black;
+        }
+
+        .order-item:hover {
+            background-color: lightgrey;
+        }
+
+        .display-box, .final-order {
+            background-color: white;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        .sidebar {
+            background-color: lightgrey;
+            padding: 10px;
+            border-radius: 10px;
+            margin-right: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .color-bands {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .color-band {
+            width: 50px;
+            height: 20px;
+        }
+
+        .red { background-color: red; }
+        .pink { background-color: pink; }
+        .hot-pink { background-color: hotpink; }
+
+        .syrup-box {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .syrup-option {
+            width: 100px;
+            height: 30px;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: white;
+            border: 1px solid black;
+        }
+
+        .syrup-option.selected {
+            background-color: yellow;
+        }
+
+        .milk-options {
+            margin-top: 20px;
+        }
+
+        .milk-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        .milk-box {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+        .title {
+            font-size: 50px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .order-button, .finish-button {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 5px;
+        }
+
+        .cream-box {
+            margin-left: 20px;
+        }
+
+        .circle-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ddd;
+            cursor: pointer;
+        }
+
+        .circle:hover {
+            background-color: #bbb;
+        }
     </style>
 </head>
 <body>
+    <div class="title">DRINK</div>
+    <div class="main-container">
+        <div class="container">
+            <div class="preset-orders">
+                <h3>Preset Orders</h3>
+                <div class="order-item" onclick="showIngredients('Matcha')">Matcha</div>
+                <div class="order-item" onclick="showIngredients('Vanilla Dream')">Vanilla Dream</div>
+                <div class="order-item" onclick="showIngredients('Fruity Bliss')">Fruity Bliss</div>
+                <div class="order-item" onclick="showIngredients('Coco with Nut')">Coco with Nut</div>
+                <div class="order-item" onclick="showIngredients('Dragon Fire')">Dragon Fire</div>
+                <div id="ingredientBox" class="display-box">Select an order to see ingredients</div>
+            </div>
+        </div>
+    </div>
     <div class="title">DRINK</div>
     <div class="container">
         <div class="sidebar">
@@ -231,6 +418,12 @@
         function selectMilk(element, type, color) {
             document.body.style.backgroundColor = color;
             document.getElementById('milkDisplay').textContent = 'Selected Milk: ' + type;
+        }
+        function selectSyrup(element) {
+            document.querySelectorAll('.syrup-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            element.classList.add('selected');
         }
 
        
