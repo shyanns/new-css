@@ -16,6 +16,38 @@
             margin: 0;
             background-color: pink;
         }
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: pink;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .display-box {
+            background-color: white;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+        #allergenWarning {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
 
         .container {
             display: flex;
@@ -189,6 +221,12 @@
     </style>
 </head>
 <body>
+    <div class="container">
+        <h3>Check for Allergens</h3>
+        <input type="text" id="allergenInput" placeholder="Enter allergen" />
+        <button onclick="checkAllergen()">Check</button>
+        <div id="allergenWarning" class="display-box"></div>
+    </div>
     <div class="title">DRINK</div>
     <div class="main-container">
     
@@ -353,7 +391,27 @@
     document.getElementById('ingredientBox').textContent = ingredients[order] || 'Ingredients not available';
     document.getElementById('sustainabilityBox').textContent = `Sustainability: ${sustainability[order]}`;
 }
+const ingredients = {
+            "Matcha": ["Matcha powder", "Milk", "Sugar"],
+            "Vanilla Dream": ["Vanilla syrup", "Milk", "Sugar"],
+            "Fruity Bliss": ["Mixed berries", "Milk", "Sugar"],
+            "Coco with Nut": ["Coconut milk", "Almonds", "Syrup"],
+            "Dragon Fire": ["Spicy syrup", "Milk", "Cinnamon"]
+        };
 
+        function checkAllergen() {
+            const allergen = document.getElementById('allergenInput').value.toLowerCase();
+            let warningMessage = "";
+            
+            for (let drink in ingredients) {
+                if (ingredients[drink].some(ing => ing.toLowerCase().includes(allergen))) {
+                    warningMessage = `Warning: ${drink} contains ${allergen}. Do not order.`;
+                    break;
+                }
+            }
+            
+            document.getElementById('allergenWarning').textContent = warningMessage || "No allergens detected.";
+        }
                 
         
         
