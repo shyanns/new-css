@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cream Level App</title>
     <style>
-        body {
+      
+       body {
             font-family: sans-serif;
             display: flex;
             flex-direction: column;
@@ -183,12 +184,15 @@
             margin-top: 10px;
             border-radius: 10px;
         }
+      
+      
     </style>
 </head>
 <body>
     <div class="title">DRINK</div>
     <div class="main-container">
-        <div class="container">
+        <!-- Existing HTML structure remains unchanged -->
+            <div class="container">
             <div class="preset-orders">
                 <h3>Preset Orders</h3>
                 <div class="order-item" onclick="showIngredients('Matcha')">Matcha</div>
@@ -257,33 +261,63 @@
         </div>
     </div>
 
+
+
+    </div>
+
     <div id="finalOrder" class="order-details"></div>
 
     <script>
-       
-       function selectCreamLevel(level) {
-    // Update cream level display text
-    document.getElementById('creamLevelDisplay').textContent = 'Cream Level: ' + level;
-}
+        class Drink {
+            constructor() {
+                this.syrup = '';
+                this.milk = '';
+                this.creamLevel = 0;
+            }
 
-function selectSyrup(element) {
-    // Deselect all syrups by removing 'selected' class
-    let syrups = document.querySelectorAll('.syrup-option');
-    syrups.forEach(syrup => {
-        syrup.classList.remove('selected');
-    });
+            setSyrup(syrup) {
+                this.syrup = syrup;
+                document.getElementById('syrupDisplay').textContent = 'Selected Syrup: ' + syrup;
+            }
 
-    // Add 'selected' class to the clicked syrup element
-    element.classList.add('selected');
+            setMilk(milk, color) {
+                this.milk = milk;
+                document.body.style.backgroundColor = color;
+                document.getElementById('milkDisplay').textContent = 'Selected Milk: ' + milk;
+            }
 
-    // Update the syrup display text
-    document.getElementById('syrupDisplay').textContent = 'Selected Syrup: ' + element.textContent;
-}
+            setCreamLevel(level) {
+                this.creamLevel = level;
+                document.getElementById('creamLevelDisplay').textContent = 'Cream Level: ' + level;
+            }
 
+            getOrderSummary() {
+                return `
+                    <h3>Your Order:</h3>
+                    <p>Cream Level: ${this.creamLevel}</p>
+                    <p>Syrup: ${this.syrup}</p>
+                    <p>Milk: ${this.milk}</p>
+                `;
+            }
+        }
+
+        const drink = new Drink();
+
+        function selectCreamLevel(level) {
+            drink.setCreamLevel(level);
+        }
+
+        function selectSyrup(element) {
+            let syrups = document.querySelectorAll('.syrup-option');
+            syrups.forEach(syrup => {
+                syrup.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            drink.setSyrup(element.textContent);
+        }
 
         function selectMilk(element, type, color) {
-            document.body.style.backgroundColor = color;
-            document.getElementById('milkDisplay').textContent = 'Selected Milk: ' + type;
+            drink.setMilk(type, color);
         }
 
         function showIngredients(order) {
@@ -298,15 +332,7 @@ function selectSyrup(element) {
         }
 
         function finishOrder() {
-            let creamLevel = document.getElementById('creamLevelDisplay').textContent;
-            let syrup = document.getElementById('syrupDisplay').textContent;
-            let milk = document.getElementById('milkDisplay').textContent;
-            let orderSummary = `
-                <h3>Your Order:</h3>
-                <p>${creamLevel}</p>
-                <p>${syrup}</p>
-                <p>${milk}</p>
-            `;
+            const orderSummary = drink.getOrderSummary();
             document.getElementById('finalOrder').innerHTML = orderSummary;
         }
 
