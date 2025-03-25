@@ -258,6 +258,8 @@
                     <button class="finish-button" onclick="finishOrder()">Finish</button>
                 </div>
             </div>
+            <div id="sustainabilityBox" class="display-box">Select an order to see sustainability info</div>
+
         </div>
     </div>
 
@@ -273,6 +275,7 @@
                 this.syrup = '';
                 this.milk = '';
                 this.creamLevel = 0;
+                this.presetName = '';
             }
 
             setSyrup(syrup) {
@@ -290,15 +293,22 @@
                 this.creamLevel = level;
                 document.getElementById('creamLevelDisplay').textContent = 'Cream Level: ' + level;
             }
+            setPresetName(name) {
+        this.presetName = name;
+    }
 
             getOrderSummary() {
                 return `
                     <h3>Your Order:</h3>
+                    <p>Preset: ${this.presetName}</p> <!-- Display preset name -->
                     <p>Cream Level: ${this.creamLevel}</p>
                     <p>Syrup: ${this.syrup}</p>
                     <p>Milk: ${this.milk}</p>
                 `;
             }
+            setPresetName(name) {
+        this.presetName = name;
+    }
         }
 
         const drink = new Drink();
@@ -321,24 +331,67 @@
         }
 
         function showIngredients(order) {
-            let ingredients = {
-                "Matcha": "Matcha powder, Milk, Sugar",
-                "Vanilla Dream": "Vanilla syrup, Milk, Sugar",
-                "Fruity Bliss": "Mixed berries, Milk, Sugar",
-                "Coco with Nut": "Coconut milk, Almonds, Syrup",
-                "Dragon Fire": "Spicy syrup, Milk, Cinnamon"
-            };
-            document.getElementById('ingredientBox').textContent = ingredients[order] || 'Ingredients not available';
-        }
+    let ingredients = {
+        "Matcha": "Matcha powder, Milk, Sugar",
+        "Vanilla Dream": "Vanilla syrup, Milk, Sugar",
+        "Fruity Bliss": "Mixed berries, Milk, Sugar",
+        "Coco with Nut": "Coconut milk, Almonds, Syrup",
+        "Dragon Fire": "Spicy syrup, Milk, Cinnamon"
+    };
 
-        function finishOrder() {
-            const orderSummary = drink.getOrderSummary();
-            document.getElementById('finalOrder').innerHTML = orderSummary;
-        }
+    let sustainability = {
+        "Matcha": "Moderate Impact",
+        "Vanilla Dream": "High Impact (Regular Milk)",
+        "Fruity Bliss": "Low Impact (Plant-based)",
+        "Coco with Nut": "Low Impact (Plant-based)",
+        "Dragon Fire": "Moderate Impact"
+    };
+
+    
+    drink.setPresetName(order);
+
+    document.getElementById('ingredientBox').textContent = ingredients[order] || 'Ingredients not available';
+    document.getElementById('sustainabilityBox').textContent = `Sustainability: ${sustainability[order]}`;
+}
+
+                
+        
+        
+  
+        
+
+       function finishOrder() {
+    let orderList = document.getElementById('finalOrder');
+    orderList.innerHTML = ''; 
+
+ 
+    orders.forEach(order => {
+        orderList.innerHTML += order;
+    });
+}
 
         function placeOrder() {
             alert('Order placed!');
         }
+       
+       
+        let orders = [];
+
+function placeOrder() {
+    orders.push(drink.getOrderSummary()); 
+    displayAllOrders(); 
+    alert('Order placed!');
+}
+
+function displayAllOrders() {
+    let orderList = document.getElementById('finalOrder');
+    orderList.innerHTML = ''; 
+    orders.forEach(order => {
+        orderList.innerHTML += order; 
+    });
+}
+
+
     </script>
 </body>
 </html>
