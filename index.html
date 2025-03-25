@@ -27,7 +27,7 @@
             text-align: center;
         }
 
-        .sidebar {
+        .side {
             background-color: lightgrey;
             padding: 10px;
             border-radius: 10px;
@@ -37,7 +37,7 @@
             align-items: center;
         }
 
-        .color-bands {
+        .bands {
             display: flex;
             flex-direction: column;
             gap: 5px;
@@ -53,7 +53,7 @@
         .pink { background-color: pink; }
         .hot-pink { background-color: hotpink; }
 
-        .syrup-box {
+        .syrup {
             display: flex;
             flex-direction: column;
             gap: 5px;
@@ -202,7 +202,6 @@
 
         <div class="container">
             <div class="sidebar">
-                <!-- Color bands for selection -->
                 <div class="color-bands">
                     <div class="color-band red"></div>
                     <div class="color-band pink"></div>
@@ -261,16 +260,26 @@
     <div id="finalOrder" class="order-details"></div>
 
     <script>
-        function selectCreamLevel(level) {
-            document.getElementById('creamLevelDisplay').textContent = 'Cream Level: ' + level;
-        }
+       
+       function selectCreamLevel(level) {
+    // Update cream level display text
+    document.getElementById('creamLevelDisplay').textContent = 'Cream Level: ' + level;
+}
 
-        function selectSyrup(element) {
-            let syrups = document.querySelectorAll('.syrup-option');
-            syrups.forEach(syrup => syrup.classList.remove('selected'));
-            element.classList.add('selected');
-            document.getElementById('syrupDisplay').textContent = 'Selected Syrup: ' + element.textContent;
-        }
+function selectSyrup(element) {
+    // Deselect all syrups by removing 'selected' class
+    let syrups = document.querySelectorAll('.syrup-option');
+    syrups.forEach(syrup => {
+        syrup.classList.remove('selected');
+    });
+
+    // Add 'selected' class to the clicked syrup element
+    element.classList.add('selected');
+
+    // Update the syrup display text
+    document.getElementById('syrupDisplay').textContent = 'Selected Syrup: ' + element.textContent;
+}
+
 
         function selectMilk(element, type, color) {
             document.body.style.backgroundColor = color;
